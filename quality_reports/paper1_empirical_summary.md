@@ -179,13 +179,13 @@ normalised BTP demand shock. Maturity FEs absorb level differences across the po
 
 | Series | Label | N | OLS δ | SE | Huber δ | SE |
 |---|---|---|---|---|---|---|
-| iBoxx EUR Sovereign | IUS6 | 274 | +0.029* | (0.015) | **+0.029***| (0.011) |
-| iBoxx EUR Corp (IG) | XBLC | 259 | +0.080*** | (0.027) | **+0.046***| (0.012) |
-| FTSE EUR IG Bond | FTEBIGEURT | 325 | +0.059*** | (0.020) | **+0.044***| (0.012) |
-| BBB EUR Corp (I09919EU) | BBB Corp | 315 | +0.065* | (0.035) | **+0.031**| (0.015) |
-| iBoxx EUR Corp (I02002EU) | Corp | 328 | +0.048*** | (0.015) | **+0.034***| (0.011) |
-| Pan-EU HY (I02501EU) | HY | 328 | +0.044** | (0.022) | **+0.030***| (0.006) |
-| HY 250MM (I38184EU) | HY 250MM | 58 | +0.021* | (0.011) | **+0.029***| (0.007) |
+| iBoxx EUR Sovereign | IUS6 | 274 | +0.029* | (0.015) | +0.029*** | (0.011) |
+| iBoxx EUR Corp (IG) | XBLC | 259 | +0.080*** | (0.027) | +0.046*** | (0.012) |
+| FTSE EUR IG Bond | FTEBIGEURT | 325 | +0.059*** | (0.020) | +0.044*** | (0.012) |
+| BBB EUR Corp (I09919EU) | BBB Corp | 315 | +0.065* | (0.035) | +0.031** | (0.015) |
+| iBoxx EUR Corp (I02002EU) | Corp | 328 | +0.048*** | (0.015) | +0.034*** | (0.011) |
+| Pan-EU HY (I02501EU) | HY | 328 | +0.044** | (0.022) | +0.030*** | (0.006) |
+| HY 250MM (I38184EU) | HY 250MM | 58 | +0.021* | (0.011) | +0.029*** | (0.007) |
 
 All positive and significant: a positive BTP demand shock raises corporate/private
 debt prices across the credit quality spectrum (IG, BBB, HY). The magnitude is
@@ -200,9 +200,9 @@ XBLC (R²=11.6%) shows the strongest signal-to-noise ratio.
 
 | Series | N | OLS δ | SE | Huber δ | SE |
 |---|---|---|---|---|---|
-| FTSE MIB | 331 | +0.195*** | (0.064) | **+0.217***| (0.049) |
-| EURO STOXX 50 | 331 | +0.149*** | (0.054) | **+0.148***| (0.047) |
-| MSCI Europe | 331 | +0.138*** | (0.049) | **+0.140***| (0.043) |
+| FTSE MIB | 331 | +0.195*** | (0.064) | +0.217*** | (0.049) |
+| EURO STOXX 50 | 331 | +0.149*** | (0.054) | +0.148*** | (0.047) |
+| MSCI Europe | 331 | +0.138*** | (0.049) | +0.140*** | (0.043) |
 
 All highly significant and economically large: a 1σ positive BTP demand shock raises
 FTSE MIB by 21.7 bp (0.217%), EURO STOXX by 14.8 bp, MSCI Europe by 14.0 bp.
@@ -241,11 +241,11 @@ or global risk factors. Tested series (pooled long-run, Huber):
 | Commodities (COMOPA) | −0.054 | (0.048) | ✓ Pass |
 | EUR/CHF | +0.012 | (0.015) | ✓ Pass |
 | EUR/USD | +0.013 | (0.024) | ✓ Pass |
-| AUS/EUR (AUEUAH) | **+0.112** | (0.044) | ⚠ Sig. |
+| AUS/EUR (AUEUAH) | +0.112** | (0.044) | ⚠ Sig. |
 | MOVE Index | −0.047 | (0.125) | ✓ Pass |
-| **VSTOXX** | **−0.186***| (0.055) | ❓ Endogenous? |
-| **VIX** | **−0.117***| (0.043) | ❓ Endogenous? |
-| **Bund Futures (FGBLc1)** | **+0.044**| (0.022) | ❓ Endogenous? |
+| **VSTOXX** | −0.186*** | (0.055) | ❓ Endogenous? |
+| **VIX** | −0.117*** | (0.043) | ❓ Endogenous? |
+| **Bund Futures (FGBLc1)** | +0.044** | (0.020) | ❓ Endogenous? |
 
 **Notable findings requiring attention:**
 1. **VSTOXX/VIX:** Significantly negative — positive BTP demand shocks reduce European
