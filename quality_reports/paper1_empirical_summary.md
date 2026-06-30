@@ -331,15 +331,23 @@ Median CDS on auction dates: 131.85 bp. High: N=161, Low: N=166.
 
 CLIFS threshold: 0.1498. High: N=93, Low: N=238.
 
-| Series | Low β | High β | p(diff) |
-|---|---|---|---|
-| I09919EU (BBB Corp) | +0.028** | +0.067*** | 0.015** |
-| HY 250MM | +0.021*** | +0.060*** | 0.042** |
-| FTSE MIB | +0.178*** | +0.258*** | 0.474 |
+| Series | Low β | SE | High β | SE | p(diff) |
+|---|---|---|---|---|---|
+| I09919EU (BBB Corp) | +0.008 | (0.016) | +0.067*** | (0.018) | 0.015** |
+| ICE BofA EUR HY | +0.032*** | (0.007) | +0.017 | (0.018) | 0.431 |
+| FTSE MIB | +0.178*** | (0.051) | +0.258*** | (0.099) | 0.474 |
 
-- Higher-credit-risk assets (BBB, HY) show significantly stronger spillovers
-  in high-CLIFS months. This is consistent with a credit-channel story: under
-  systemic stress, sovereign demand signals are more informative about credit conditions.
+- **I09919EU (BBB Corp):** The only series with a statistically significant
+  stress asymmetry (p=0.015**) — the spillover is concentrated in high-CLIFS
+  months (+0.067***) while the low-stress coefficient is near zero (+0.008, ns).
+  Consistent with a credit-channel story: under systemic stress, a successful BTP
+  auction is particularly informative about credit conditions.
+- **ICE BofA EUR HY:** No significant asymmetry (p=0.431). Both subsamples show
+  positive effects (+0.032*** low, +0.017 high) but the difference is
+  insignificant. The earlier significant result (p=0.042) belonged to I38184EU HY
+  250MM, which covered only 2021–2024 — a short high-spread episode that inflated
+  the stress heterogeneity estimate.
+- **FTSE MIB:** Symmetric (p=0.474) across CLIFS regimes.
 
 ---
 
