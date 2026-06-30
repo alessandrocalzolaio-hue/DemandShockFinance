@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+
+% ------------------------------------------------------------------------------
+% Packages
+% ------------------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{microtype}
+
+\doublespacing
+
+% ------------------------------------------------------------------------------
+% Title
+% ------------------------------------------------------------------------------
+\title{Demand Shocks in the Italian Government Bond Market}
+
+\author{Alessandro Calzolaio%
+  \thanks{University of Trento.
+    Email: \texttt{alessandro.calzolaio@unitn.it}.}
+}
+
+\date{This version: \today}
+
+% ------------------------------------------------------------------------------
+\begin{document}
+% ------------------------------------------------------------------------------
+
+\maketitle
+
+\begin{abstract}
+[Abstract placeholder. Identification strategy, main findings, and contribution
+to go here.]
+\end{abstract}
+
+\vspace{1em}
+\noindent\textbf{JEL Codes:} G12, G14, E43, E58 \\
+\noindent\textbf{Keywords:} government bonds, auction demand shocks,
+spillovers, Italian Treasury, BTP
+
+\clearpage
+
+% ------------------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+% ------------------------------------------------------------------------------
+
+[Introduction placeholder.]
+
+% Literature positioning, contribution, and roadmap to go here.
+
+% ------------------------------------------------------------------------------
+\section{Institutional Background and Data}
+\label{sec:data}
+% ------------------------------------------------------------------------------
+
+\subsection{Italian Treasury Auctions}
+
+[Description of BTP auction mechanism, timing, and Bank of Italy role.]
+
+\subsection{Data Sources}
+
+[BTC\_BoI series, comovement data (COMOVEMENT.xlsx), tick cache, sample period.]
+
+% ------------------------------------------------------------------------------
+\section{Identification of Demand Shocks}
+\label{sec:identification}
+% ------------------------------------------------------------------------------
+
+\subsection{Shock Definition}
+
+Following \citet{Lengyel2021_demand_shocks}, we measure the demand shock as the
+log price change in the narrow 10:59--11:15 window surrounding the announcement
+of Italian government bond auction results.
+
+\[
+  \varepsilon_t^{(m)} = \ln P_{11:15,t}^{(m)} - \ln P_{10:59,t}^{(m)}
+\]
+
+where $m \in \{3\text{Y}, 5\text{Y}, 10\text{Y}, 15\text{Y}, 30\text{Y}\}$
+denotes maturity and $t$ indexes auction dates.
+
+\subsection{Normalization and Pooling}
+
+[Normalization by maturity-specific volatility; pooled long panel construction.]
+
+% ------------------------------------------------------------------------------
+\section{Exogeneity Tests}
+\label{sec:exogeneity}
+% ------------------------------------------------------------------------------
+
+[Panel C regressions: demand shock on fundamentals/policy expectations.
+Orthogonality with ECB surprises (EA-MPD, \citealt{Altavilla2019_eampd}).]
+
+% ------------------------------------------------------------------------------
+\section{Spillover Results}
+\label{sec:spillovers}
+% ------------------------------------------------------------------------------
+
+\subsection{Cross-Market Comovement}
+
+[Panels A \& B: OLS-HAC and Huber-T estimates for corporate/private debt
+and equities.]
+
+\subsection{Magnitude Analysis}
+
+[Rescaled effects in log-price basis-point units.]
+
+% ------------------------------------------------------------------------------
+\section{Robustness}
+\label{sec:robustness}
+% ------------------------------------------------------------------------------
+
+[Symmetric window sensitivity; alternative HAC lags; winsorization; day-before
+placebo; ECB meeting-day exclusion; crisis + COVID exclusion; Wald pooling test.]
+
+% ------------------------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+% ------------------------------------------------------------------------------
+
+[Conclusion placeholder.]
+
+% ------------------------------------------------------------------------------
+\bibliographystyle{aer}
+\bibliography{../Bibliography_base}
+% ------------------------------------------------------------------------------
+
+\clearpage
+\appendix
+
+\section{Additional Tables and Figures}
+\label{app:tables}
+
+[Appendix placeholder.]
+
+% ------------------------------------------------------------------------------
+\end{document}
+% ------------------------------------------------------------------------------

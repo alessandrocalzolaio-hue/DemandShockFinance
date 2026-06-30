@@ -85,3 +85,16 @@ scripts/R/_outputs/
 # Output artifacts — uncomment lines below based on your preference
 # *.rds
 # output/**/*.rds
+
+# Research data files (local only; not committed to version control)
+data/*.xlsx
+data/*.csv
+data/*.dta
+data/*.rds
+data/daticdsebond/
+!data/README.md
+
+# Notebook-generated output figures and tables
+Figures/fig_spike_*.pdf
+Slides/TablesNew/
+results/

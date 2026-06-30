@@ -3,6 +3,10 @@
 Corrections and learned facts that persist across sessions.
 When a mistake is corrected, append a `[LEARN:category]` entry below.
 
+## Memory Index
+- [User Profile](memory/user_profile.md) — Alessandro Calzolaio, PhD @ UniTrento, Python-primary, target journals
+- [Project Paper 1](memory/project_paper1.md) — BTP demand shocks identification, data, estimators, robustness inventory
+
 ---
 
 <!-- Append new entries below. Most recent at bottom. -->

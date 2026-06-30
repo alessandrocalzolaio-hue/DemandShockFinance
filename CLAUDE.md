@@ -1,23 +1,19 @@
-# CLAUDE.MD -- Academic Project Development with Claude Code
+# CLAUDE.MD — Demand Shocks in the Italian Government Bond Markets
 
-<!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
-     Customize Beamer environments and CSS classes for your theme.
-     Keep this file under ~150 lines — Claude loads it every session.
-     See the guide at docs/workflow-guide.html for full documentation. -->
-
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
+**Project:** Demand Shocks in the Italian Government Bond Markets (Paper 1, PhD Thesis)
+**Institution:** University of Trento
 **Branch:** main
 
 ---
 
 ## Core Principles
 
-- **Plan first** -- enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
-- **Verify after** -- compile/render and confirm output at the end of every task
-- **Single source of truth** -- Beamer `.tex` is authoritative; Quarto `.qmd` derives from it
-- **Quality gates** -- nothing ships below 80/100
-- **[LEARN] tags** -- when corrected, save `[LEARN:category] wrong → right` to [MEMORY.md](MEMORY.md)
+- **Plan first** — enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
+- **Verify after** — compile/render and confirm output at the end of every task
+- **Python is primary** — `paper1.ipynb` is the analysis engine; LaTeX manuscript derives from it
+- **Single source of truth** — Beamer `.tex` is authoritative for slides; Quarto `.qmd` derives from it
+- **Quality gates** — nothing ships below 80/100
+- **[LEARN] tags** — when corrected, save `[LEARN:category] wrong → right` to [MEMORY.md](MEMORY.md)
 
 Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and session logs are in [quality_reports/](quality_reports/).
 
@@ -26,20 +22,24 @@ Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and se
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
-├── CLAUDE.MD                    # This file
-├── .claude/                     # Rules, skills, agents, hooks
-├── Bibliography_base.bib        # Centralized bibliography
-├── Figures/                     # Figures and images
-├── Preambles/header.tex         # LaTeX headers
-├── Slides/                      # Beamer .tex files
-├── Quarto/                      # RevealJS .qmd files + theme
-├── docs/                        # GitHub Pages (auto-generated)
-├── scripts/                     # Utility scripts + R code
-├── quality_reports/             # Plans, session logs, merge reports, decision records
-├── explorations/                # Research sandbox (see rules)
-├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Papers and existing slides
+DemandShockFinance/
+├── CLAUDE.md                        # This file
+├── .claude/                         # Rules, skills, agents, hooks
+├── Bibliography_base.bib            # Centralized bibliography
+├── Figures/                         # Figures and images
+├── Preambles/header.tex             # LaTeX headers
+├── Slides/                          # Beamer .tex conference slides
+├── Quarto/                          # RevealJS .qmd slides + theme
+├── paper/                           # LaTeX manuscript (Paper1.tex)
+├── data/                            # Raw + processed data (BTC, COMOVEMENT, ticks)
+├── docs/                            # GitHub Pages (auto-generated)
+├── scripts/
+│   ├── main notebook/Paper1.ipynb  # PRIMARY ANALYSIS — Python, 54 cells
+│   └── R/                          # Secondary R scripts (if needed)
+├── quality_reports/                 # Plans, session logs, merge reports, decision records
+├── explorations/                    # Research sandbox (see rules)
+├── templates/                       # Session log, quality report templates
+└── master_supporting_docs/          # Reference papers (Lengyel, Altavilla et al.)
 ```
 
 ---
@@ -47,14 +47,23 @@ Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and se
 ## Commands
 
 ```bash
-# LaTeX (3-pass, XeLaTeX only)
-cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-BIBINPUTS=..:$BIBINPUTS bibtex file
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
+# Run main analysis (Python)
+cd "scripts/main notebook" && jupyter nbconvert --to notebook --execute Paper1.ipynb
+
+# LaTeX manuscript (3-pass, XeLaTeX)
+cd paper && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1.tex
+BIBINPUTS=..:$BIBINPUTS bibtex Paper1
+TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1.tex
+TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1.tex
+
+# LaTeX slides (3-pass, XeLaTeX)
+cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1_slides.tex
+BIBINPUTS=..:$BIBINPUTS bibtex Paper1_slides
+TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1_slides.tex
+TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode Paper1_slides.tex
 
 # Deploy Quarto to GitHub Pages
-./scripts/sync_to_docs.sh LectureN
+./scripts/sync_to_docs.sh Paper1_slides
 
 # Quality score
 python scripts/quality_score.py Quarto/file.qmd
@@ -62,11 +71,9 @@ python scripts/quality_score.py Quarto/file.qmd
 # Palette sync (LaTeX ↔ SCSS)
 ./scripts/check-palette-sync.sh
 
-# Surface-count sync (README ↔ CLAUDE.md ↔ guide ↔ landing page)
+# Surface-count sync
 ./scripts/check-surface-sync.sh
 ```
-
-**Palette contract:** color names in `Preambles/header.tex` must match SCSS variables in `Quarto/theme-template.scss`. See [`Preambles/README.md`](Preambles/README.md).
 
 ---
 
@@ -84,42 +91,49 @@ Enforced by `/commit` (halts + asks for override) **and** — once you run `./sc
 
 ## Skills Quick Reference
 
-The full table of all skills lives in [README.md](README.md#skills-claudeskills). Most-used, by workflow:
+The full table of all skills lives in [README.md](README.md#skills-claudeskills). Most-used for this project:
 
-- **Slides / teaching:** `/create-lecture` `/compile-latex` `/deploy` `/qa-quarto` `/slide-excellence` `/syllabus` `/teach-from-paper` `/scaffold-exercises`
-- **Papers / review:** `/review-paper` (`--peer`) `/seven-pass-review` `/respond-to-referees` `/verify-claims` `/proofread` `/humanize` `/submission-disclosures`
-- **Data / reproducibility:** `/data-analysis` `/did-event-study` `/simulation-study` `/audit-reproducibility` `/diagnose` `/replication-package` `/capture-environment` `/power-analysis` `/disclosure-check`
-- **Research / writing:** `/interview-me` `/lit-review` `/research-ideation` `/preregister` `/grant-proposal` `/data-management-plan`
-- **Meta / workflow:** `/commit` `/learn` `/new-skill` `/checkpoint` `/context-status` `/deep-audit` `/coauthor-brief` `/triage-inbox`
-
-Stata (`/stata-replication`), R packages (`/r-package-check`), TikZ (`/extract-tikz`, `/new-diagram`), and more — see the README for the complete index.
+- **Paper writing:** `/review-paper` (`--peer`) `/seven-pass-review` `/respond-to-referees` `/verify-claims` `/proofread` `/humanize` `/submission-disclosures`
+- **Data / reproducibility:** `/data-analysis` `/audit-reproducibility` `/diagnose` `/replication-package` `/capture-environment`
+- **Slides:** `/compile-latex` `/deploy` `/qa-quarto` `/slide-excellence`
+- **Research:** `/interview-me` `/lit-review` `/research-ideation`
+- **Meta / workflow:** `/commit` `/context-status` `/deep-audit` `/coauthor-brief`
 
 ---
-
-<!-- CUSTOMIZE: Replace placeholder rows ([your-env], [.your-class]) with your own.
-     Delete the rows marked "(example — delete)" once you've added yours. -->
 
 ## Beamer Custom Environments
 
 | Environment | Effect | Use Case |
 | --- | --- | --- |
-| `[your-env]` | [Description] | [When to use] |
-| `keybox` | Gold background box | Key points *(example — delete)* |
-| `definitionbox[Title]` | Blue-bordered titled box | Formal definitions *(example — delete)* |
+| `keybox` | Gold background box | Key empirical results |
+| `definitionbox[Title]` | Blue-bordered titled box | Formal econometric definitions |
 
 ## Quarto CSS Classes
 
 | Class | Effect | Use Case |
 | --- | --- | --- |
-| `[.your-class]` | [Description] | [When to use] |
-| `.smaller` | 85% font | Dense content *(example — delete)* |
-| `.positive` | Green bold | Good annotations *(example — delete)* |
+| `.smaller` | 85% font | Dense regression tables |
+| `.positive` | Green bold | Statistically significant coefficients |
 
 ---
 
-## Current Project State
+## Paper Progress Tracker
 
-| Lecture | Beamer | Quarto | Key Content |
+| Artifact | File | Status | Notes |
 | --- | --- | --- | --- |
-| HelloWorld *(sample — delete when ready)* | `HelloWorld.tex` | `HelloWorld.qmd` | Minimal deck to verify setup |
-| 1: [Topic] | `Lecture01_Topic.tex` | `Lecture1_Topic.qmd` | [Brief description] |
+| Main analysis | `scripts/main notebook/Paper1.ipynb` | Active | Python, 54 cells, 10+ robustness checks |
+| Manuscript | `paper/Paper1.tex` | Skeleton | Sections to be written |
+| Conference slides | `Slides/Paper1_slides.tex` | Not started | Beamer |
+| Slides (Quarto) | `Quarto/Paper1_slides.qmd` | Not started | RevealJS |
+
+## Research Design (quick reference)
+
+| Element | Value |
+| --- | --- |
+| Identification | Demand shock = price change in 10:59–11:15 auction window (Lengyel & Giuliodori 2022) |
+| Instrument | Change in Bank of Italy bid-to-cover ratio (ΔBTC\_BoI) |
+| Sample | No-syndication BTPs; maturities 3Y, 5Y, 10Y, 15Y, 30Y |
+| Estimators | OLS-HAC (L=1 baseline), Huber-T |
+| Comovement | Corporate/private debt + equities (Panels A & B) |
+| Exogeneity | Fundamentals/policy expectations don't react (Panel C) |
+| Target journals | Journal of Quantitative Finance · Journal of Financial Markets · Journal of Fixed Income |
