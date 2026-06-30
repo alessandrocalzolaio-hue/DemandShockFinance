@@ -185,15 +185,17 @@ normalised BTP demand shock. Maturity FEs absorb level differences across the po
 | BBB EUR Corp (I09919EU) | BBB Corp | 315 | +0.065* | (0.035) | +0.031** | (0.015) |
 | iBoxx EUR Corp (I02002EU) | Corp | 328 | +0.048*** | (0.015) | +0.034*** | (0.011) |
 | Pan-EU HY (I02501EU) | HY | 328 | +0.044** | (0.022) | +0.030*** | (0.006) |
-| HY 250MM (I38184EU) | HY 250MM | 58 | +0.021* | (0.011) | +0.029*** | (0.007) |
+| ICE BofA EUR HY (BAMLHE00EHYITRIV) | ICE BofA HY | 329 | +0.043** | (0.021) | +0.033*** | (0.006) |
 
 All positive and significant: a positive BTP demand shock raises corporate/private
 debt prices across the credit quality spectrum (IG, BBB, HY). The magnitude is
 roughly 3–5 bp per 1% effect (δ×100), with the broadest EUR corporate indices
-(XBLC, FTEBIGEURT) showing the largest responses.
+(XBLC, FTEBIGEURT) showing the largest responses. Both HY indices (I02501EU and
+ICE BofA) deliver nearly identical Huber estimates (~0.030–0.033***), with the
+ICE BofA series now covering the full sample (N=329 vs 58 previously).
 
 **OLS R² (pooled long):**
-IUS6: 0.024; XBLC: 0.116; FTEBIGEURT: 0.053; I09919EU: 0.003; I02002EU: 0.008.
+IUS6: 0.024; XBLC: 0.116; FTEBIGEURT: 0.053; I09919EU: 0.003; I02002EU: 0.008; ICE BofA HY: 0.022.
 XBLC (R²=11.6%) shows the strongest signal-to-noise ratio.
 
 ### Panel B — Equities (Pooled long-run)
